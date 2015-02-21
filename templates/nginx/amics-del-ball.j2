@@ -1,0 +1,15 @@
+server {
+  listen 80;
+  server_name amicsdelball.cat;
+  root /var/www/amics-del-ball;
+
+  location = /nginx_stub_status {
+    stub_status on;
+    auth_basic "nginx status";
+    auth_basic_user_file /var/www/.htpasswd;
+  }
+
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
+}

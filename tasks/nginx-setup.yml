@@ -1,0 +1,22 @@
+---
+
+- name: ensure /var/www exists
+  action: file path=/var/www state=directory owner={{ user }} group=www-data
+
+- name: remove default nginx site
+  action: file path=/etc/nginx/sites-enabled/default state=absent
+
+- name: writes maxim-colls nginx site
+  template: src=templates/nginx/maxim-colls.j2 dest=/etc/nginx/sites-available/maxim-colls mode=0644
+
+- name: enable maxim-colls
+  action: file src=/etc/nginx/sites-available/maxim-colls dest=/etc/nginx/sites-enabled/maxim-colls state=link
+
+- name: writes amics-del-ball nginx site
+  template: src=templates/nginx/amics-del-ball.j2 dest=/etc/nginx/sites-available/amics-del-ball mode=0644
+
+- name: enable amics-del-ball
+  action: file src=/etc/nginx/sites-available/amics-del-ball dest=/etc/nginx/sites-enabled/amics-del-ball state=link
+
+- name: ensure nginx is running
+  service: name=nginx state=restarted

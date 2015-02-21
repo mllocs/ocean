@@ -1,0 +1,11 @@
+---
+
+- name: add nginx ppa
+  action: apt_repository repo=ppa:nginx/stable state=present
+
+- name: Install packets
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - curl
+    - nginx
+    - git
