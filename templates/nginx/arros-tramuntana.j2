@@ -1,0 +1,21 @@
+server {
+  listen 80;
+  server_name arrostramuntana.cat;
+  return 301 http://www.arrostramuntana.cat$request_uri;
+}
+
+server {
+  listen 80;
+  server_name www.arrostramuntana.cat;
+  root /var/www/arros-tramuntana/public;
+
+  location = /nginx_stub_status {
+    stub_status on;
+    auth_basic "nginx status";
+    auth_basic_user_file /var/www/.htpasswd;
+  }
+
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
+}

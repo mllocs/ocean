@@ -12,7 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network 'forwarded_port', guest: 80, host: 8080
 
   config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "playbooks/setup.yml"
+    ansible.playbook = "setup.yml"
   end
 
   config.vm.synced_folder ".", "/vagrant", disabled: true

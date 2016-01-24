@@ -1,7 +1,8 @@
 ---
 
-user: deployer
+user: vagrant
 
 sites:
   - amics-del-ball
   - maxim-colls
+  - arros-tramuntana

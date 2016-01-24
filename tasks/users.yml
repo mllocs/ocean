@@ -5,4 +5,3 @@
 
 - name: enable colors for the new base user
   command: sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/g' /home/{{ user }}/.bashrc
-
